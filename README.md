@@ -6,7 +6,7 @@
 
 ## 🛠️ Skills & Expertise
 - **Backend:** ASP.NET, .NET Core, C#
-- **Frontend:** Angular, HTML, CSS, JavaScript
+- **Frontend:** React, HTML, CSS, JavaScript
 - **Cloud:** Microsoft Azure (Azure AD, Key Vault, Web Apps), AWS
 - **Database:** SQL, Entity Framework, Dapper
 - **API:** Microsoft Graph API, RESTful WebAPI
