@@ -148,33 +148,33 @@ def text_lines(x, y, lines, lh, attrs):
 
 # ---- 1 · hero -----------------------------------------------------------------
 def hero():
-    h = 360
+    h = 420
     body = f"""
 <defs>
-  <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="620" y2="0">
+  <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="700" y2="0">
     <stop offset="0" stop-color="{INK}"/><stop offset=".42" stop-color="{INK}"/>
     <stop offset=".5" stop-color="{AGENTS}"/><stop offset=".58" stop-color="{INK}"/>
     <stop offset="1" stop-color="{INK}"/>
-    <animateTransform attributeName="gradientTransform" type="translate" values="-620 0;620 0;620 0"
+    <animateTransform attributeName="gradientTransform" type="translate" values="-700 0;700 0;700 0"
       keyTimes="0;.45;1" dur="7s" begin="1.6s" repeatCount="indefinite"/>
   </linearGradient>
 </defs>
 <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
 <g class="f" {d(0)}>
-  <rect class="live" x="48" y="46" width="8" height="8" rx="2" fill="{AGENTS}"/>
-  <text x="66" y="54" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">SENIOR FULL STACK AI ENGINEER · BENGALURU</text>
+  <rect class="live" x="48" y="52" width="10" height="10" rx="2" fill="{AGENTS}"/>
+  <text x="70" y="61" font-family="{MONO}" font-size="14" letter-spacing="1.2" fill="{MUTED}">SENIOR FULL STACK AI ENGINEER · BENGALURU</text>
 </g>
-<text class="r" {d(0.15)} x="44" y="150" font-family="{SERIF}" font-size="72" letter-spacing="-1.8" fill="{INK}">Sabarimani</text>
-<text class="r" {d(0.3)} x="44" y="230" font-family="{SERIF}" font-style="italic" font-size="72" letter-spacing="-1.8" fill="url(#shine)">Ramamoorthi</text>
+<text class="r" {d(0.15)} x="40" y="175" font-family="{SERIF}" font-size="96" letter-spacing="-2.2" fill="{INK}">Sabarimani</text>
+<text class="r" {d(0.3)} x="40" y="275" font-family="{SERIF}" font-style="italic" font-size="96" letter-spacing="-2.2" fill="url(#shine)">Ramamoorthi</text>
 <g class="r" {d(0.55)}>
-  {text_lines(48, 278, [
+  {text_lines(48, 322, [
       "I modernize enterprise .NET systems and build RAG,",
       "agentic workflows, and LLM apps that ship."
-  ], 26, f'font-family="{SANS}" font-size="17" fill="{INK_SOFT}"')}
+  ], 28, f'font-family="{SANS}" font-size="20" fill="{INK_SOFT}"')}
 </g>
 <g class="f" {d(0.85)}>
-  <text x="48" y="340" font-family="{MONO}" font-size="13" fill="{INK}">Palo Alto Networks via Spire</text>
-  <text class="nu" x="268" y="340" font-family="{MONO}" font-size="13" fill="{AGENTS}">&#8599;</text>
+  <text x="48" y="396" font-family="{MONO}" font-size="15" fill="{INK}">Palo Alto Networks via Spire</text>
+  <text class="nu" x="292" y="396" font-family="{MONO}" font-size="15" fill="{AGENTS}">&#8599;</text>
 </g>
 """
     write(
@@ -191,7 +191,7 @@ def hero():
 
 
 # ---- 2 · world tiles ----------------------------------------------------------
-TILE_W, TILE_H = 880 / 3 - 8, 210
+TILE_W, TILE_H = 880 / 3 - 8, 240
 
 
 def count_up(num, word, x, y, attrs, begin, dur=1.1, frames=18):
@@ -219,16 +219,16 @@ def count_up(num, word, x, y, attrs, begin, dur=1.1, frames=18):
 
 
 def tile(name, label, color, on, num, word, blurb, delay, pos):
-    lines = wrap(blurb, 34)
+    lines = wrap(blurb, 30)
     blurb_svg = "".join(
-        f'<text class="r" {d(delay + 0.75 + i * 0.1)} x="24" y="{150 + i * 20}" font-family="{SANS}" '
-        f'font-size="14" fill="{on}" opacity=".92">{escape(l)}</text>'
+        f'<text class="r" {d(delay + 0.75 + i * 0.1)} x="24" y="{168 + i * 22}" font-family="{SANS}" '
+        f'font-size="15" fill="{on}" opacity=".92">{escape(l)}</text>'
         for i, l in enumerate(lines)
     )
     body = f"""
 <defs>
   <clipPath id="card"><rect width="{TILE_W}" height="{TILE_H}" rx="14"/></clipPath>
-  <clipPath id="slot"><rect x="0" y="62" width="{TILE_W}" height="62"/></clipPath>
+  <clipPath id="slot"><rect x="0" y="68" width="{TILE_W}" height="72"/></clipPath>
   <linearGradient id="gl" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/>
     <stop offset=".5" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
 </defs>
@@ -238,10 +238,10 @@ def tile(name, label, color, on, num, word, blurb, delay, pos):
     <circle class="rg" {d(delay + 0.5)} cx="{TILE_W - 40}" cy="{TILE_H - 40}" r="60" fill="none" stroke="{on}" stroke-opacity=".5" stroke-width="2"/>
     <rect class="sh" style="animation-delay:{delay + 1.4:.2f}s" x="0" y="-20" width="90" height="{TILE_H + 40}" fill="url(#gl)" transform="translate(-260 0)"/>
   </g>
-  <text class="sl" {d(delay + 0.35)} x="24" y="38" font-family="{MONO}" font-size="12" letter-spacing="1.2" fill="{on}">{label}</text>
-  <g class="ai" {d(delay + 0.5)}><text class="n" style="animation-delay:{delay + 1.3:.2f}s" x="250" y="38" font-family="{MONO}" font-size="14" fill="{on}">&#8594;</text></g>
+  <text class="sl" {d(delay + 0.35)} x="24" y="42" font-family="{MONO}" font-size="14" letter-spacing="1.4" fill="{on}">{label}</text>
+  <g class="ai" {d(delay + 0.5)}><text class="n" style="animation-delay:{delay + 1.3:.2f}s" x="248" y="42" font-family="{MONO}" font-size="16" fill="{on}">&#8594;</text></g>
   <g clip-path="url(#slot)"><g class="ro" {d(delay + 0.45)}>
-    {count_up(num, word, 22, 112, f'font-family="{SERIF}" font-size="44" fill="{on}"', delay + 0.45)}
+    {count_up(num, word, 22, 126, f'font-family="{SERIF}" font-size="52" fill="{on}"', delay + 0.45)}
   </g></g>
   {blurb_svg}
 </g>
@@ -262,11 +262,11 @@ def tile(name, label, color, on, num, word, blurb, delay, pos):
 
 # ---- 3 · activity -------------------------------------------------------------
 def activity(data):
-    h = 340
+    h = 380
     monthly = data["monthly"][-12:]
     best = max(monthly[:-1] or monthly, key=lambda m: m["total"])
     top = max(best["total"], 1)
-    x0, x1, base, maxh, gap = 40, 600, 292, 140, 10
+    x0, x1, base, maxh, gap = 40, 600, 330, 160, 10
     bw = (x1 - x0 - gap * (len(monthly) - 1)) / max(len(monthly), 1)
     bars = []
     for i, m in enumerate(monthly):
@@ -279,13 +279,13 @@ def activity(data):
         bars.append(
             f'<rect class="g" style="animation-delay:{2.2 + i * 0.07:.2f}s" x="{x:.1f}" y="{base - bh}" '
             f'width="{bw:.1f}" height="{bh}" rx="4" fill="{fill}"><title>{label}: {m["total"]:,}</title></rect>'
-            f'<text class="f" style="animation-delay:{2.2 + i * 0.07:.2f}s" x="{x + bw / 2:.1f}" y="{base + 22}" '
-            f'text-anchor="middle" font-family="{MONO}" font-size="11" fill="{MUTED}">{label}</text>'
+            f'<text class="f" style="animation-delay:{2.2 + i * 0.07:.2f}s" x="{x + bw / 2:.1f}" y="{base + 24}" '
+            f'text-anchor="middle" font-family="{MONO}" font-size="12" fill="{MUTED}">{label}</text>'
         )
         if is_best:
             bars.append(
-                f'<text class="p" style="animation-delay:3.2s" x="{x + bw / 2:.1f}" y="{base - bh - 10}" '
-                f'text-anchor="middle" font-family="{MONO}" font-size="11" fill="{AGENTS}">{m["total"]:,}</text>'
+                f'<text class="p" style="animation-delay:3.2s" x="{x + bw / 2:.1f}" y="{base - bh - 12}" '
+                f'text-anchor="middle" font-family="{MONO}" font-size="13" fill="{AGENTS}">{m["total"]:,}</text>'
             )
     cs = data["current_streak"]["length"]
     ls = data["longest_streak"]["length"]
@@ -298,18 +298,18 @@ def activity(data):
     ]
     side = []
     for i, (big, small) in enumerate(stats):
-        y = 104 + i * 92
+        y = 118 + i * 98
         side.append(
             f'<g class="r" {d(2.6 + i * 0.15)}>'
-            f'<text x="650" y="{y}" font-family="{SERIF}" font-size="40" fill="{INK}">{big}</text>'
-            f'<text x="650" y="{y + 24}" font-family="{SANS}" font-size="13" fill="{MUTED}">{small}</text></g>'
+            f'<text x="640" y="{y}" font-family="{SERIF}" font-size="46" fill="{INK}">{big}</text>'
+            f'<text x="640" y="{y + 26}" font-family="{SANS}" font-size="14" fill="{MUTED}">{small}</text></g>'
         )
         if i < 2:
-            side.append(f'<rect class="f" {d(2.6)} x="650" y="{y + 44}" width="190" height="1" fill="{RULE}"/>')
+            side.append(f'<rect class="f" {d(2.6)} x="640" y="{y + 48}" width="200" height="1" fill="{RULE}"/>')
     body = f"""
 <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
-<text class="f" {d(1.9)} x="40" y="58" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">THE LAST 12 MONTHS ON GITHUB</text>
-<text class="r" {d(2.0)} x="38" y="114" font-family="{SERIF}" font-size="52" fill="{INK}">{data["total_contributions"]:,} <tspan font-style="italic">contributions</tspan></text>
+<text class="f" {d(1.9)} x="40" y="58" font-family="{MONO}" font-size="14" letter-spacing="1.2" fill="{MUTED}">THE LAST 12 MONTHS ON GITHUB</text>
+<text class="r" {d(2.0)} x="36" y="120" font-family="{SERIF}" font-size="58" fill="{INK}">{data["total_contributions"]:,} <tspan font-style="italic">contributions</tspan></text>
 {''.join(bars)}
 {''.join(side)}
 """
@@ -326,7 +326,7 @@ def activity(data):
 
 
 # ---- 4 · repo cards -----------------------------------------------------------
-REPO_W, REPO_H = 880 / 3 - 8, 176
+REPO_W, REPO_H = 880 / 3 - 8, 200
 REPOS = [
     (
         "cloudshift-plane-mcp",
@@ -358,10 +358,10 @@ def repo_card(i, name, desc, lang, color, stars):
     body = f"""
 <rect width="{REPO_W}" height="{REPO_H}" rx="14" fill="{PAPER}"/>
 <g class="r" {d(delay)}>
-  <rect x="24" y="30" width="8" height="8" rx="2" fill="{color}"/>
-  <text x="40" y="39" font-family="{SANS}" font-weight="600" font-size="16" fill="{INK}">{escape(name)}</text>
-  {text_lines(24, 72, wrap(desc, 34), 21, f'font-family="{SANS}" font-size="14" fill="{INK_SOFT}"')}
-  <text x="24" y="{REPO_H - 24}" font-family="{MONO}" font-size="12" fill="{MUTED}">{escape(meta)}</text>
+  <rect x="24" y="34" width="10" height="10" rx="2" fill="{color}"/>
+  <text x="44" y="44" font-family="{SANS}" font-weight="600" font-size="18" fill="{INK}">{escape(name)}</text>
+  {text_lines(24, 80, wrap(desc, 30), 24, f'font-family="{SANS}" font-size="15" fill="{INK_SOFT}"')}
+  <text x="24" y="{REPO_H - 28}" font-family="{MONO}" font-size="13" fill="{MUTED}">{escape(meta)}</text>
 </g>
 """
     write(
@@ -381,10 +381,10 @@ def repo_card(i, name, desc, lang, color, stars):
 def section_title(text, italic, theme):
     fg = "#e6edf3" if theme == "dark" else INK
     body = (
-        f'<text class="r" {d(4.4)} x="2" y="46" font-family="{SERIF}" font-size="34" fill="{fg}">'
+        f'<text class="r" {d(4.4)} x="2" y="54" font-family="{SERIF}" font-size="40" fill="{fg}">'
         f'{escape(text)} <tspan font-style="italic">{escape(italic)}</tspan></text>'
     )
-    write(f"title-coding-{theme}.svg", svg(W, 64, body, ["serif", "serif-i"], f"{text} {italic}", bottom=0))
+    write(f"title-coding-{theme}.svg", svg(W, 72, body, ["serif", "serif-i"], f"{text} {italic}", bottom=0))
 
 
 # ---- 5 · contribution graph (teal) --------------------------------------------
@@ -399,7 +399,7 @@ def heatmap(data):
     days = data["days"]
     first = datetime.date.fromisoformat(days[0]["date"])
     lead = (first.weekday() + 1) % 7
-    cell, step, gx, gy = 12, 15, 44, 96
+    cell, step, gx, gy = 13, 15.5, 36, 100
     cells, months, seen = [], [], set()
     for i, day in enumerate(days):
         k = i + lead
@@ -416,27 +416,27 @@ def heatmap(data):
             f'<title>{day["date"]}: {c} contribution{"s" if c != 1 else ""}</title></rect>'
         )
     ncols = (len(days) + lead + 6) // 7
-    right = gx + ncols * step - 3
+    right = min(W - 40, gx + ncols * step - 3)
     labels = "".join(
-        f'<text x="{gx + col * step}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">{m}</text>'
+        f'<text x="{gx + col * step}" y="{gy + 7 * step + 18}" font-family="{MONO}" font-size="12" fill="{MUTED}">{m}</text>'
         for col, m in months
-        if col < ncols - 12
+        if col < ncols - 10
     )
-    legend_x = right - len(TEAL) * 14
+    legend_x = right - len(TEAL) * 15
     legend = "".join(
-        f'<rect x="{legend_x + i * 14}" y="{gy + 7 * step + 6}" width="11" height="11" rx="2.5" fill="{c}"/>'
+        f'<rect x="{legend_x + i * 15}" y="{gy + 7 * step + 6}" width="12" height="12" rx="2.5" fill="{c}"/>'
         for i, c in enumerate(TEAL)
     )
-    h = gy + 7 * step + 44
+    h = gy + 7 * step + 48
     body = f"""
 <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
-<text class="r" {d(0.8)} x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}">Every day, <tspan font-style="italic" fill="{AGENTS}">in teal</tspan></text>
-<text class="f" {d(0.8)} x="{right}" y="60" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">REFRESHED DAILY</text>
+<text class="r" {d(0.8)} x="40" y="66" font-family="{SERIF}" font-size="40" fill="{INK}">Every day, <tspan font-style="italic" fill="{AGENTS}">in teal</tspan></text>
+<text class="f" {d(0.8)} x="{right}" y="64" text-anchor="end" font-family="{MONO}" font-size="13" letter-spacing="1.2" fill="{MUTED}">REFRESHED DAILY</text>
 {''.join(cells)}
 <g class="f" {d(2.4)}>{labels}
-<text x="{legend_x - 8}" y="{gy + 7 * step + 16}" text-anchor="end" font-family="{MONO}" font-size="11" fill="{MUTED}">less</text>
+<text x="{legend_x - 8}" y="{gy + 7 * step + 17}" text-anchor="end" font-family="{MONO}" font-size="12" fill="{MUTED}">less</text>
 {legend}
-<text x="{legend_x + len(TEAL) * 14 + 2}" y="{gy + 7 * step + 16}" font-family="{MONO}" font-size="11" fill="{MUTED}">more</text></g>
+<text x="{legend_x + len(TEAL) * 15 + 2}" y="{gy + 7 * step + 17}" font-family="{MONO}" font-size="12" fill="{MUTED}">more</text></g>
 """
     write(
         "heatmap.svg",
